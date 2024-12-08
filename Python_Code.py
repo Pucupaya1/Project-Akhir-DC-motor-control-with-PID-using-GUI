@@ -7,8 +7,8 @@ import threading
 import time
 
 class PIDControllerApp(ctk.CTk):
-    def __init__(self):
-        super().__init__()
+    def _init_(self):
+        super()._init_()
         self.title("PID Controller GUI")
         self.geometry("1200x1000")
         self.start_time = None
@@ -219,12 +219,14 @@ class PIDControllerApp(ctk.CTk):
                 self.settling_calculated = False
 
             # Perbarui label
-            self.parameter_labels["Peak Time"].configure(text=f"{int(peak_time)} s")
-            self.parameter_labels["Rise Time"].configure(text=f"{int(rise_time)} s")
-            self.parameter_labels["Overshoot"].configure(text=f"{int(overshoot):.2f} %")
-            self.parameter_labels["Settling Time"].configure(text=f"{int(self.settling_time)} s")
-            self.parameter_labels["Steady State"].configure(text=f"{int(steady_state):} RPM")
-            self.parameter_labels["Error"].configure(text=f"{int(error):} %")
+            self.parameter_labels["Peak Time"].configure(text=f"{peak_time:.2f} s")
+            self.parameter_labels["Rise Time"].configure(text=f"{rise_time:.2f} s")
+            self.parameter_labels["Overshoot"].configure(text=f"{overshoot:.2f} %")
+            self.parameter_labels["Settling Time"].configure(text=f"{self.settling_time:.2f} s")
+            self.parameter_labels["Steady State"].configure(text=f"{steady_state:.2f} RPM")
+            self.parameter_labels["Error"].configure(text=f"{error:.2f} %")
+
+            
 
     # Update Grafik
     def update_graph(self):
@@ -247,7 +249,7 @@ class PIDControllerApp(ctk.CTk):
 
         self.canvas.draw()
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     ctk.set_appearance_mode("Light")
     app = PIDControllerApp()
     app.mainloop()
